@@ -1,6 +1,4 @@
-const fs = require("fs");
-
-const trashClass = ["_ATmkjn","_3NZkPV"]
+let fs = require("fs");
 
 function removeElementByClassName(className) {
   const elements = document.getElementsByClassName(className);
@@ -10,9 +8,17 @@ function removeElementByClassName(className) {
   return elements;
 }
 
+function removeTrashElement() {
+  try {
+    const trashClass = ["_ATmkjn","_3NZkPV"]
+    trashClass.forEach(removeElementByClassName)
+  } catch (error) {
+    console.log("removeTrashElement error:",error)
+  }
+}
+
 function getElementContainerByClassName() {
-  trashClass.forEach(removeElementByClassName)
-  removeElementByClassName("_3NZkPV");
+  removeTrashElement()
   const title = document.getElementsByClassName("_SoZTOW font-weight-bold");
   const element = document.getElementsByClassName("_2VQuOG _3NT6Zz");
   const level = document.getElementsByClassName("clickable badge");
@@ -33,6 +39,7 @@ function getElementContainerByClassName() {
   }
   console.log(JSON.stringify(listQuestArr));
   const json = JSON.stringify(listQuestArr);
+  generator(json)
   return listQuestArr;
 }
 
