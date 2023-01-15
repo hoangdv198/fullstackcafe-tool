@@ -1,5 +1,3 @@
-let fs = require("fs");
-
 function removeElementByClassName(className) {
   const elements = document.getElementsByClassName(className);
   while (elements.length > 0) {
@@ -10,15 +8,15 @@ function removeElementByClassName(className) {
 
 function removeTrashElement() {
   try {
-    const trashClass = ["_ATmkjn","_3NZkPV"]
-    trashClass.forEach(removeElementByClassName)
+    const trashClass = ["_ATmkjn", "_3NZkPV"];
+    trashClass.forEach(removeElementByClassName);
   } catch (error) {
-    console.log("removeTrashElement error:",error)
+    console.log("removeTrashElement error:", error);
   }
 }
 
 function getElementContainerByClassName() {
-  removeTrashElement()
+  removeTrashElement();
   const title = document.getElementsByClassName("_SoZTOW font-weight-bold");
   const element = document.getElementsByClassName("_2VQuOG _3NT6Zz");
   const level = document.getElementsByClassName("clickable badge");
@@ -27,7 +25,8 @@ function getElementContainerByClassName() {
   for (let i = 0; i < title.length; i++) {
     const itemElementLevel = level[correct + i]?.innerText;
 
-    const source = document.querySelectorAll('[rel="noreferrer"]')[i]?.outerHTML;
+    const source =
+      document.querySelectorAll('[rel="noreferrer"]')[i]?.outerHTML;
 
     listQuestArr.push({
       id: i,
@@ -39,7 +38,7 @@ function getElementContainerByClassName() {
   }
   console.log(JSON.stringify(listQuestArr));
   const json = JSON.stringify(listQuestArr);
-  generator(json)
+  generator(json);
   return listQuestArr;
 }
 
@@ -246,8 +245,16 @@ function changeClassByClassName(className, classNameChange) {
   }
 }
 
-function generator() {
-  fs.writeFile("myjsonfile.json", json, "utf8");
+function generator(json) {
+  // create link and download file
+  const url = window.URL.createObjectURL(new Blob([json]));
+  const a = document.createElement("a");
+  a.style.display = "none";
+  a.href = url;
+  a.download = `generator.json`;
+  document.body.appendChild(a);
+  a.click();
+  window.URL.revokeObjectURL(url);
 }
 
 function testFunc(classNameAnswer) {
