@@ -8,7 +8,7 @@ function removeElementByClassName(className) {
 
 function removeTrashElement() {
   try {
-    const trashClass = ["_ATmkjn", "_3NZkPV"];
+    const trashClass = ["_ATmkjn", "_3NZkPV","_2XvnAK"];
     trashClass.forEach(removeElementByClassName);
   } catch (error) {
     console.log("removeTrashElement error:", error);
@@ -24,17 +24,19 @@ function getElementContainerByClassName() {
   const listQuestArr = [];
   for (let i = 0; i < title.length; i++) {
     const itemElementLevel = level[correct + i]?.innerText;
-
-    const source =
-      document.querySelectorAll('[rel="noreferrer"]')[i]?.outerHTML;
-
-    listQuestArr.push({
-      id: i,
-      title: title[i]?.outerHTML,
-      answer: element[i]?.outerHTML,
-      source: source,
-      level: itemElementLevel,
-    });
+    
+    const source = document.querySelectorAll('[rel="noreferrer"]')[i]?.outerHTML;
+    const titleItem = title[i]?.outerHTML
+    const answerItem = element[i]?.outerHTML
+    if(titleItem && answerItem) {
+      listQuestArr.push({
+        id: i,
+        title: titleItem,
+        answer: answerItem,
+        source: source,
+        level: itemElementLevel,
+      });
+    }
   }
   console.log(JSON.stringify(listQuestArr));
   const json = JSON.stringify(listQuestArr);
