@@ -20,6 +20,8 @@ function getElementContainerByClassName() {
   const title = document.getElementsByClassName("_SoZTOW font-weight-bold");
   const element = document.getElementsByClassName("_2VQuOG _3NT6Zz");
   const level = document.getElementsByClassName("clickable badge");
+  const labelAnswer = document.getElementsByClassName("h5 highlight font-weight-bold");
+
   const correct = level.length - element.length;
   const listQuestArr = [];
   for (let i = 0; i < title.length; i++) {
@@ -28,6 +30,7 @@ function getElementContainerByClassName() {
     const source = document.querySelectorAll('[rel="noreferrer"]')[i]?.outerHTML;
     const titleItem = title[i]?.outerHTML
     const answerItem = element[i]?.outerHTML
+
     if(titleItem && answerItem) {
       listQuestArr.push({
         id: i,
